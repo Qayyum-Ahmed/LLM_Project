@@ -1,0 +1,825 @@
+{
+    "last_node_id": 39,
+    "last_link_id": 62,
+    "nodes": [
+      {
+        "id": 10,
+        "type": "VAEDecode",
+        "pos": [
+          1472,
+          348
+        ],
+        "size": [
+          210,
+          46
+        ],
+        "flags": {},
+        "order": 11,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "samples",
+            "type": "LATENT",
+            "link": 9
+          },
+          {
+            "name": "vae",
+            "type": "VAE",
+            "link": 10
+          }
+        ],
+        "outputs": [
+          {
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "links": [
+              51
+            ],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "VAEDecode"
+        },
+        "widgets_values": []
+      },
+      {
+        "id": 6,
+        "type": "CLIPTextEncode",
+        "pos": [
+          960,
+          1186
+        ],
+        "size": [
+          391.23883056640625,
+          78.14339447021484
+        ],
+        "flags": {},
+        "order": 8,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "clip",
+            "type": "CLIP",
+            "link": 3
+          }
+        ],
+        "outputs": [
+          {
+            "name": "CONDITIONING",
+            "type": "CONDITIONING",
+            "links": [
+              5
+            ],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "CLIPTextEncode"
+        },
+        "widgets_values": [
+          "(worst quality, low quality: 1.4)"
+        ],
+        "color": "#322",
+        "bgcolor": "#533"
+      },
+      {
+        "id": 39,
+        "type": "VHS_GetLatentCount",
+        "pos": [
+          1215.919921875,
+          462.9333801269531
+        ],
+        "size": [
+          225.9150390625,
+          26
+        ],
+        "flags": {},
+        "order": 5,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "latents",
+            "type": "LATENT",
+            "link": 52
+          }
+        ],
+        "outputs": [
+          {
+            "name": "count",
+            "type": "INT",
+            "links": [
+              53
+            ],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "VHS_GetLatentCount"
+        },
+        "widgets_values": {},
+        "color": "#223",
+        "bgcolor": "#335"
+      },
+      {
+        "id": 4,
+        "type": "CLIPSetLastLayer",
+        "pos": [
+          517,
+          648
+        ],
+        "size": [
+          315,
+          58
+        ],
+        "flags": {},
+        "order": 7,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "clip",
+            "type": "CLIP",
+            "link": 44
+          }
+        ],
+        "outputs": [
+          {
+            "name": "CLIP",
+            "type": "CLIP",
+            "links": [
+              3,
+              54
+            ],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "CLIPSetLastLayer"
+        },
+        "widgets_values": [
+          -2
+        ]
+      },
+      {
+        "id": 9,
+        "type": "EmptyLatentImage",
+        "pos": [
+          922,
+          544
+        ],
+        "size": [
+          315,
+          106
+        ],
+        "flags": {},
+        "order": 0,
+        "mode": 0,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "LATENT",
+            "type": "LATENT",
+            "links": [
+              39,
+              52
+            ],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "EmptyLatentImage"
+        },
+        "widgets_values": [
+          512,
+          512,
+          64
+        ]
+      },
+      {
+        "id": 5,
+        "type": "PrimitiveNode",
+        "pos": [
+          474,
+          882
+        ],
+        "size": [
+          285.6000061035156,
+          82
+        ],
+        "flags": {},
+        "order": 1,
+        "mode": 0,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "INT",
+            "type": "INT",
+            "links": [
+              6
+            ],
+            "slot_index": 0,
+            "widget": {
+              "name": "seed"
+            }
+          }
+        ],
+        "title": "Primitive (I'm using this as seed)",
+        "properties": {
+          "Run widget replace on values": false
+        },
+        "widgets_values": [
+          44788989568894,
+          "fixed"
+        ],
+        "color": "#2a363b",
+        "bgcolor": "#3f5159"
+      },
+      {
+        "id": 2,
+        "type": "VAELoader",
+        "pos": [
+          398,
+          780
+        ],
+        "size": [
+          385.8948669433594,
+          58
+        ],
+        "flags": {},
+        "order": 2,
+        "mode": 0,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "VAE",
+            "type": "VAE",
+            "links": [
+              10
+            ],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "VAELoader"
+        },
+        "widgets_values": [
+          "BerrysMix.vae.safetensors"
+        ]
+      },
+      {
+        "id": 7,
+        "type": "KSampler",
+        "pos": [
+          1443,
+          479
+        ],
+        "size": [
+          315,
+          262
+        ],
+        "flags": {},
+        "order": 10,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "model",
+            "type": "MODEL",
+            "link": 62
+          },
+          {
+            "name": "positive",
+            "type": "CONDITIONING",
+            "link": 55
+          },
+          {
+            "name": "negative",
+            "type": "CONDITIONING",
+            "link": 5
+          },
+          {
+            "name": "latent_image",
+            "type": "LATENT",
+            "link": 39
+          },
+          {
+            "name": "seed",
+            "type": "INT",
+            "link": 6,
+            "widget": {
+              "name": "seed"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "name": "LATENT",
+            "type": "LATENT",
+            "links": [
+              9
+            ],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "KSampler"
+        },
+        "widgets_values": [
+          44788989568894,
+          "fixed",
+          12,
+          8,
+          "dpm_adaptive",
+          "normal",
+          1
+        ]
+      },
+      {
+        "id": 37,
+        "type": "VHS_VideoCombine",
+        "pos": [
+          1813,
+          338
+        ],
+        "size": [
+          315,
+          334
+        ],
+        "flags": {},
+        "order": 12,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "images",
+            "type": "IMAGE",
+            "link": 51
+          },
+          {
+            "name": "audio",
+            "type": "AUDIO",
+            "link": null,
+            "shape": 7
+          },
+          {
+            "name": "meta_batch",
+            "type": "VHS_BatchManager",
+            "link": null,
+            "shape": 7
+          },
+          {
+            "name": "vae",
+            "type": "VAE",
+            "link": null,
+            "shape": 7
+          }
+        ],
+        "outputs": [
+          {
+            "name": "Filenames",
+            "type": "VHS_FILENAMES",
+            "links": null,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "VHS_VideoCombine"
+        },
+        "widgets_values": {
+          "frame_rate": 16,
+          "loop_count": 0,
+          "filename_prefix": "aaa_readme",
+          "format": "video/h264-mp4",
+          "pix_fmt": "yuv420p",
+          "crf": 18,
+          "save_metadata": true,
+          "trim_to_audio": false,
+          "pingpong": false,
+          "save_output": true,
+          "videopreview": {
+            "hidden": false,
+            "paused": false,
+            "params": {
+              "filename": "aaa_readme_00003.mp4",
+              "subfolder": "",
+              "type": "output",
+              "format": "video/h264-mp4",
+              "frame_rate": 16,
+              "workflow": "aaa_readme_00003.png",
+              "fullpath": "/content/ComfyUI/output/aaa_readme_00003.mp4"
+            }
+          }
+        },
+        "color": "#223",
+        "bgcolor": "#335"
+      },
+      {
+        "id": 36,
+        "type": "ADE_AnimateDiffLoaderWithContext",
+        "pos": [
+          916.787109375,
+          192.31275939941406
+        ],
+        "size": [
+          315,
+          230
+        ],
+        "flags": {},
+        "order": 6,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "model",
+            "type": "MODEL",
+            "link": 48
+          },
+          {
+            "name": "context_options",
+            "type": "CONTEXT_OPTIONS",
+            "link": 49,
+            "shape": 7
+          },
+          {
+            "name": "motion_lora",
+            "type": "MOTION_LORA",
+            "link": null,
+            "shape": 7
+          },
+          {
+            "name": "ad_settings",
+            "type": "AD_SETTINGS",
+            "link": null,
+            "shape": 7
+          },
+          {
+            "name": "sample_settings",
+            "type": "SAMPLE_SETTINGS",
+            "link": null,
+            "shape": 7
+          },
+          {
+            "name": "ad_keyframes",
+            "type": "AD_KEYFRAMES",
+            "link": null,
+            "shape": 7
+          }
+        ],
+        "outputs": [
+          {
+            "name": "MODEL",
+            "type": "MODEL",
+            "links": [],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "ADE_AnimateDiffLoaderWithContext"
+        },
+        "widgets_values": [
+          "mm_sd_v15_v2.ckpt",
+          "autoselect",
+          1,
+          true
+        ],
+        "color": "#432",
+        "bgcolor": "#653"
+      },
+      {
+        "id": 33,
+        "type": "ADE_AnimateDiffUniformContextOptions",
+        "pos": [
+          326.00830078125,
+          214.90859985351562
+        ],
+        "size": [
+          315,
+          270
+        ],
+        "flags": {},
+        "order": 3,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "prev_context",
+            "type": "CONTEXT_OPTIONS",
+            "link": null,
+            "shape": 7
+          },
+          {
+            "name": "view_opts",
+            "type": "VIEW_OPTS",
+            "link": null,
+            "shape": 7
+          }
+        ],
+        "outputs": [
+          {
+            "name": "CONTEXT_OPTS",
+            "type": "CONTEXT_OPTIONS",
+            "links": [
+              49
+            ],
+            "slot_index": 0,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "ADE_AnimateDiffUniformContextOptions"
+        },
+        "widgets_values": [
+          3,
+          1,
+          2,
+          "uniform",
+          false,
+          "flat",
+          false,
+          0,
+          1,
+          ""
+        ],
+        "color": "#432",
+        "bgcolor": "#653"
+      },
+      {
+        "id": 38,
+        "type": "BatchPromptSchedule",
+        "pos": [
+          951,
+          776
+        ],
+        "size": [
+          423.4346008300781,
+          364
+        ],
+        "flags": {},
+        "order": 9,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "clip",
+            "type": "CLIP",
+            "link": 54
+          },
+          {
+            "name": "max_frames",
+            "type": "INT",
+            "link": 53,
+            "widget": {
+              "name": "max_frames"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "name": "POS",
+            "type": "CONDITIONING",
+            "links": [
+              55
+            ],
+            "slot_index": 0,
+            "shape": 3
+          },
+          {
+            "name": "NEG",
+            "type": "CONDITIONING",
+            "links": null
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "BatchPromptSchedule"
+        },
+        "widgets_values": [
+          "\"0\": \"A group of kids playing soccer in a narrow street lined with colorful houses. The ball is in mid-air as one child kicks it towards another. The scene is lively, with some children cheering and others running.\",\n  \"3\": \"The kids continue playing soccer in the street. The ball is now being dribbled by one child, weaving skillfully past another. The setting sun casts long shadows on the pavement, enhancing the warm atmosphere.\",\n  \"6\": \"A child attempts to pass the ball to a teammate, while another child tries to intercept it. The narrow street is filled with vibrant colors, and a small dog can be seen in the background, watching the game.\",\n  \"9\": \"The ball is shot towards a makeshift goal made of two bricks on the ground. A child dives to block the shot as others look on excitedly. The surrounding houses add charm to the playful scene.\",\n  \"12\": \"The kids are jubilant as one of them scores a goal. They celebrate with high fives and laughter. The warm tones of the evening light illuminate the colorful houses and lively street.\",\n  \"15\": \"The game resumes with one child kicking the ball to restart play. Others quickly react, running towards the ball. A bicycle leans against a wall in the background, adding to the everyday street scene.\",\n  \"18\": \"A child skillfully controls the ball, maneuvering past two opponents. The narrow street is alive with energy, as spectators peek out from windows of the colorful houses.\",\n  \"21\": \"The ball bounces off a wall as the kids use their surroundings creatively in the game. One child chases the ball, while others position themselves for the next play. The streetlights are beginning to turn on, casting a warm glow.\",\n  \"24\": \"A powerful shot is made towards the makeshift goal, and a child attempts to block it. The group cheers enthusiastically, regardless of the outcome. The vibrant street is filled with laughter and movement.\",\n  \"27\": \"The game momentarily pauses as one child retrieves the ball, which has rolled near a parked scooter. Others gather around, chatting and laughing. The colorful houses and warm lighting add a cozy feel to the scene.\",\n  \"30\": \"The game resumes with renewed energy. A child dribbles the ball down the street, while others race to catch up. The playful shouts echo through the narrow street, creating a lively atmosphere.\",\n  \"33\": \"The ball is passed swiftly between teammates as the game intensifies. A small crowd of onlookers gathers near a corner to watch the kids play. The streetlights now shine brightly, adding to the vibrant scene.\",\n  \"36\": \"A child attempts a daring move, lifting the ball over an opponent’s head. The rest of the kids cheer and laugh as the move succeeds. The colorful street exudes warmth and joy.\",\n  \"39\": \"The ball is kicked high into the air, and all eyes follow its trajectory. A child positions themselves to receive the ball, while others prepare for the next play. The lively street remains the heart of the action.\",\n  \"42\": \"The game continues with relentless energy. One child attempts to block a shot with a dramatic slide, while others cheer and encourage. The surrounding street, lit by warm streetlights, is alive with activity.\",\n  \"45\": \"The kids take a brief break, sitting on the pavement and chatting while one child practices tricks with the ball. The vibrant setting of colorful houses and glowing streetlights captures the joyous spirit of the evening.\"",
+          120,
+          "",
+          "There should be 5 kids playing football",
+          "0",
+          0,
+          47,
+          0,
+          0,
+          0,
+          0
+        ],
+        "color": "#232",
+        "bgcolor": "#353"
+      },
+      {
+        "id": 32,
+        "type": "CheckpointLoaderSimple",
+        "pos": [
+          63,
+          622
+        ],
+        "size": [
+          315,
+          98
+        ],
+        "flags": {},
+        "order": 4,
+        "mode": 0,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "MODEL",
+            "type": "MODEL",
+            "links": [
+              48,
+              62
+            ],
+            "slot_index": 0,
+            "shape": 3
+          },
+          {
+            "name": "CLIP",
+            "type": "CLIP",
+            "links": [
+              44
+            ],
+            "slot_index": 1,
+            "shape": 3
+          },
+          {
+            "name": "VAE",
+            "type": "VAE",
+            "links": null,
+            "shape": 3
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "CheckpointLoaderSimple"
+        },
+        "widgets_values": [
+          "epicrealism_naturalSinRC1VAE.safetensors"
+        ]
+      }
+    ],
+    "links": [
+      [
+        3,
+        4,
+        0,
+        6,
+        0,
+        "CLIP"
+      ],
+      [
+        5,
+        6,
+        0,
+        7,
+        2,
+        "CONDITIONING"
+      ],
+      [
+        6,
+        5,
+        0,
+        7,
+        4,
+        "INT"
+      ],
+      [
+        9,
+        7,
+        0,
+        10,
+        0,
+        "LATENT"
+      ],
+      [
+        10,
+        2,
+        0,
+        10,
+        1,
+        "VAE"
+      ],
+      [
+        39,
+        9,
+        0,
+        7,
+        3,
+        "LATENT"
+      ],
+      [
+        44,
+        32,
+        1,
+        4,
+        0,
+        "CLIP"
+      ],
+      [
+        48,
+        32,
+        0,
+        36,
+        0,
+        "MODEL"
+      ],
+      [
+        49,
+        33,
+        0,
+        36,
+        1,
+        "CONTEXT_OPTIONS"
+      ],
+      [
+        51,
+        10,
+        0,
+        37,
+        0,
+        "IMAGE"
+      ],
+      [
+        52,
+        9,
+        0,
+        39,
+        0,
+        "LATENT"
+      ],
+      [
+        53,
+        39,
+        0,
+        38,
+        1,
+        "INT"
+      ],
+      [
+        54,
+        4,
+        0,
+        38,
+        0,
+        "CLIP"
+      ],
+      [
+        55,
+        38,
+        0,
+        7,
+        1,
+        "CONDITIONING"
+      ],
+      [
+        62,
+        32,
+        0,
+        7,
+        0,
+        "MODEL"
+      ]
+    ],
+    "groups": [
+      {
+        "id": 1,
+        "title": "Change this to match your model reqs",
+        "bounding": [
+          445,
+          566,
+          416,
+          165
+        ],
+        "color": "#3f789e",
+        "font_size": 24,
+        "flags": {}
+      },
+      {
+        "id": 2,
+        "title": "Latents = Animation length",
+        "bounding": [
+          920,
+          475,
+          327,
+          150
+        ],
+        "color": "#3f789e",
+        "font_size": 24,
+        "flags": {}
+      }
+    ],
+    "config": {},
+    "extra": {
+      "ds": {
+        "scale": 0.6115909044841469,
+        "offset": [
+          90.1193134785571,
+          -76.37877747607864
+        ]
+      }
+    },
+    "version": 0.4
+  }

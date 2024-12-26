@@ -1,0 +1,2 @@
+ "Create a 4-second 30fps video of a white horse galloping through a lush green meadow at sunset. "
+ "The horse should start on the left side of the frame and end on the right by the end of the video. "
