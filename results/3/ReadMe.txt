@@ -1,0 +1,1 @@
+"A 4-sec 16fps video of a student writing something"
