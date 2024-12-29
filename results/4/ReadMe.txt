@@ -1,0 +1,1 @@
+A 4 second 16fps video of clouds hovering over a hilly area.
